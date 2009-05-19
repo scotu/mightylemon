@@ -1,9 +1,6 @@
-
 import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
-
-LOCAL_DEVELOPMENT = False
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
