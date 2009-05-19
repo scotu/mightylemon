@@ -16,8 +16,10 @@ import settings
 class Blog(models.Model):
     title = models.CharField(_("title"), max_length=100)
     author = models.ForeignKey(User, related_name=_("author"))
-    theme = models.CharField(max_length=100, choices=settings.THEME_CHOICES, default=settings.DEFAULT_THEME)
-    theme_path = models.CharField(max_length=400, null=True, blank=True)
+    theme = models.CharField(max_length=100, choices=settings.THEME_CHOICES, default=settings.DEFAULT_THEME,
+        help_text="Select from the default themes.")
+    theme_path = models.CharField(max_length=400, null=True, blank=True, help_text="Optional full path to \
+        custom theme directory. If left blank, the blog theme option will be used.")
 
     def __unicode__(self):
         return self.title
