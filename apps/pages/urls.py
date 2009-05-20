@@ -9,8 +9,8 @@ except AttributeError:
 
 urlpatterns = patterns("")
 
-# Create urls for every Page
-for page in Page.objects.all():
+# Create urls for every active Page
+for page in Page.objects.active():
     urlpatterns += patterns("django.views.generic.simple",
         url(r"^%s$" % page.get_absolute_url().lstrip('/'),
             "direct_to_template", {"template": template_name, "extra_context": {"page": page}}

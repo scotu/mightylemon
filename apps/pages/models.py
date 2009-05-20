@@ -6,6 +6,12 @@ from django.utils.translation import ugettext_lazy as _
 from tagging.fields import TagField
 from blog.models import Blog
 
+
+class PageManager(models.Manager):
+    def active(self):
+        return self.filter(active=True)
+
+
 class Page(models.Model):
     blog = models.ForeignKey(Blog, related_name=_("pages"))
     title = models.CharField(_("title"), max_length=100)
@@ -23,12 +29,13 @@ class Page(models.Model):
     enable_comments = models.BooleanField(default=True)
     tags = TagField()
     
+    objects = PageManager()
+
     class Meta:
         verbose_name = _("page")
         verbose_name_plural = _("pages")
         ordering = ("-pub_date",)
-    
-    #@models.permalink
+
     def get_absolute_url(self):
         if self.permalink:
             return self.permalink
