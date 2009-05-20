@@ -97,6 +97,7 @@ INSTALLED_APPS = (
    "wsgi",
    "authors",
    "events",
+   "pages",
    
    "tagging",
    "mailer",

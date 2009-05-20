@@ -37,7 +37,7 @@ class ThemeMiddleware:
         # theme_dir is the path to all the theme files.
         # /templates and /static should be in this directory.
         theme_dir = os.path.join(settings.THEME_DIR, request.blog.theme)
-        custom_path = request.blog.theme_path.strip()
+        custom_path = request.blog.theme_path
         if custom_path:
             if os.path.exists(custom_path):
                 theme_dir = custom_path
