@@ -24,6 +24,10 @@ class Blog(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_archive_years(self):
+        dates = Post.objects.dates('pub_date', 'year', order="DESC")
+        return [date.year for date in dates]
+
     @property
     def settings(self):
         try:
