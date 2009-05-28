@@ -1,4 +1,5 @@
 import os
+from django.http import Http404
 from blog.models import Blog
 import settings
 
@@ -52,6 +53,9 @@ class ThemeMiddleware:
         if settings.DEBUG and request.path.find('/static/') == 0:
             # return view for serving static files
             from django.views.static import serve
-            return serve(request, request.path, document_root=theme_dir)
+            try:
+                return serve(request, request.path, document_root=theme_dir)
+            except Http404:
+                return serve(request, request.path, document_root=settings.MEDIA_ROOT)
 
         return None

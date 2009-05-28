@@ -79,6 +79,8 @@ TEMPLATE_LOADERS = (
     "django.template.loaders.app_directories.load_template_source",
 )
 
+MEDIA_ROOT = os.path.realpath(os.path.join(PROJECT_ROOT))
+
 #TEMPLATE_DIRS = (
     #os.path.join(PROJECT_ROOT, "templates"),
     #os.path.join(THEME_DIR, DEFAULT_THEME, "templates"),
