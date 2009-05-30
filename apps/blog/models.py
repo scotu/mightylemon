@@ -15,7 +15,7 @@ from comment_utils.moderation import CommentModerator, moderator
 
 class Blog(models.Model):
     title = models.CharField(_("title"), max_length=100)
-    author = models.ForeignKey(User, related_name=_("author"))
+    author = models.ForeignKey(User, related_name="author", verbose_name=_("author"))
 
     def __unicode__(self):
         return self.title
@@ -36,10 +36,10 @@ class BlogSettings(models.Model):
     posts_per_page = models.PositiveIntegerField(_("posts per page"), default=6)
 
     class Meta:
-        verbose_name_plural = 'Blog Settings'
+        verbose_name_plural = _("blog settings")
 
     def __unicode__(self):
-        return "%s settings" % self.blog.title
+        return _("%(blog_title)s settings") % {"blog_title": self.blog.title}
 
 
 class PostManager(models.Manager):
@@ -48,7 +48,7 @@ class PostManager(models.Manager):
         
 
 class Post(models.Model):
-    blog = models.ForeignKey(Blog, related_name=_("posts"))
+    blog = models.ForeignKey(Blog, related_name="posts", verbose_name=_("blog"))
     title = models.CharField(_("title"), max_length=100)
     slug = models.SlugField(_("slug"), unique=True)
     body = models.TextField(_("body"))
@@ -57,11 +57,11 @@ class Post(models.Model):
         ("rst", "reStructuredText"),
         ("markdown", "Markdown"),
     ), default="html")
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(_("active"), default=False)
     create_date = models.DateTimeField(_("created"), default=datetime.now)
     pub_date = models.DateTimeField(_("published"), default=datetime.now)
     permalink = models.CharField(_("permalink"), max_length=50, blank=True, null=True)
-    enable_comments = models.BooleanField(default=True)
+    enable_comments = models.BooleanField(_("enable comments"), default=True)
     tags = TagField()
     
     objects = PostManager()
@@ -102,10 +102,10 @@ class PostModerator(CommentModerator):
             "content_object": content_object,
             "site": Site.objects.get_current(),
         })
-        subject = _('[%s] Comment: "%s"') % (
-            Site.objects.get_current().name,
-            content_object,
-        )
+        subject = _('[%(site_name)s] Comment: "%(content_object)s"') % {
+            "site_name": Site.objects.get_current().name,
+            "content_object": content_object
+        }
         message = t.render(ctx)
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
 
