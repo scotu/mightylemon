@@ -15,6 +15,8 @@ class Event(models.Model):
     link_to_url = models.URLField(_("link to url"), max_length=250, blank=True, null=True)
 
     class Meta:
+        verbose_name = _("event")
+        verbose_name_plural = _("events")
         ordering = ["-start_date"]
        
     def is_old(self):
