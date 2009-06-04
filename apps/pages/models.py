@@ -13,7 +13,7 @@ class PageManager(models.Manager):
 
 
 class Page(models.Model):
-    blog = models.ForeignKey(Blog, related_name=_("pages"))
+    blog = models.ForeignKey(Blog, related_name="pages", verbose_name=_("blog"))
     title = models.CharField(_("title"), max_length=100)
     slug = models.SlugField(_("slug"), unique=True)
     body = models.TextField(_("body"))
