@@ -1,9 +1,6 @@
-
 import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
-
-LOCAL_DEVELOPMENT = False
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -67,22 +64,31 @@ MIDDLEWARE_CLASSES = (
     "django.middleware.doc.XViewMiddleware",
 
     "blog.middleware.BlogMiddleware",
+    "blog.middleware.ThemeMiddleware",
 )
 
 ROOT_URLCONF = "mightylemon.urls"
 
-THEME = "oebfare"
+THEME_DIR = os.path.join(PROJECT_ROOT, "themes")
+THEME_CHOICES = [(theme, theme) for theme in os.listdir(THEME_DIR)]
+DEFAULT_THEME = "oebfare"
 
-THEME_DIR = os.path.join(PROJECT_ROOT, "themes", THEME)
-
-TEMPLATE_DIRS = (
-    #os.path.join(PROJECT_ROOT, "templates"),
-    os.path.join(PROJECT_ROOT, "themes", THEME, "templates"),
+TEMPLATE_LOADERS = (
+    "blog.templateloader.load_template_source", # theme loader
+    "django.template.loaders.filesystem.load_template_source",
+    "django.template.loaders.app_directories.load_template_source",
 )
+
+MEDIA_ROOT = os.path.realpath(os.path.join(PROJECT_ROOT))
+
+#TEMPLATE_DIRS = (
+    #os.path.join(PROJECT_ROOT, "templates"),
+    #os.path.join(THEME_DIR, DEFAULT_THEME, "templates"),
+#)
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.realpath(os.path.join(THEME_DIR, "static"))
+#MEDIA_ROOT = os.path.realpath(os.path.join(THEME_DIR, DEFAULT_THEME, "static"))
 
 STATS_CODE = ""  # contains stats tracking code
 
@@ -93,6 +99,7 @@ INSTALLED_APPS = (
    "wsgi",
    "authors",
    "events",
+   "pages",
    
    "tagging",
    "mailer",

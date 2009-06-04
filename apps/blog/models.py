@@ -1,6 +1,5 @@
 
 from datetime import datetime
-
 from django.db import models
 from django.conf import settings
 from django.template import Context, loader
@@ -12,13 +11,22 @@ from tagging.models import Tag
 from tagging.fields import TagField
 from mailer import send_mail
 from comment_utils.moderation import CommentModerator, moderator
+import settings
 
 class Blog(models.Model):
     title = models.CharField(_("title"), max_length=100)
     author = models.ForeignKey(User, related_name="author", verbose_name=_("author"))
+    theme = models.CharField(max_length=100, choices=settings.THEME_CHOICES, default=settings.DEFAULT_THEME,
+        help_text="Select from the default themes.")
+    theme_path = models.CharField(max_length=400, null=True, blank=True, help_text="Optional full path to \
+        custom theme directory. If left blank, the blog theme option will be used.")
 
     def __unicode__(self):
         return self.title
+
+    def get_archive_years(self):
+        dates = Post.objects.dates('pub_date', 'year', order="DESC")
+        return [date.year for date in dates]
 
     @property
     def settings(self):

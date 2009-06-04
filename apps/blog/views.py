@@ -25,11 +25,20 @@ def homepage(request, **kwargs):
     return date_based.archive_index(request, **defaults)
 homepage = privileged_post_queryset(homepage)
 
+archive_index = privileged_post_queryset(date_based.archive_index)
 object_detail = privileged_post_queryset(date_based.object_detail)
 archive_day = privileged_post_queryset(date_based.archive_day)
 archive_month = privileged_post_queryset(date_based.archive_month)
-archive_year = privileged_post_queryset(date_based.archive_year)
-archive_index = privileged_post_queryset(date_based.archive_index)
+
+def archive_year(request, **kwargs):
+    defaults = {
+        "make_object_list": True,
+        "template_object_name": "posts",
+    }
+    defaults.update(kwargs)
+    return date_based.archive_year(request, **defaults)
+archive_year = privileged_post_queryset(archive_year)
+
 
 def archive_full(request, **kwargs):
     return render_to_response("blog/post_archive_full.html", {
