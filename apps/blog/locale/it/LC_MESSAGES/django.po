@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mightylemon-blog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-30 17:28+0200\n"
-"PO-Revision-Date: 2009-05-30 17:33\n"
+"POT-Creation-Date: 2009-06-05 00:21+0200\n"
+"PO-Revision-Date: 2009-06-05 18:16\n"
 "Last-Translator: Matteo Scotuzzi <matteo.scotuzzi@gmail.com>\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Translated-Using: django-rosetta 0.4.3.svn\n"
 
-#: models.py:17 models.py:52
+#: models.py:17 models.py:60
 msgid "title"
 msgstr "titolo"
 
@@ -23,60 +23,80 @@ msgstr "titolo"
 msgid "author"
 msgstr "autore"
 
-#: models.py:36
+#: models.py:20
+msgid "Select from the default themes."
+msgstr "Selezionare tra i temi di predefiniti."
+
+#: models.py:21
+msgid "Optional full path to         custom theme directory. If left blank, the blog theme option will be used."
+msgstr "Percorso completo opzionale alla directory del tema personalizzato. Se lasciato vuoto, verrà ricavato delle impostazioni."
+
+#: models.py:44
 msgid "posts per page"
 msgstr "articoli per pagina"
 
-#: models.py:39
+#: models.py:47
 msgid "blog settings"
 msgstr "impostazioni del blog"
 
-#: models.py:42
+#: models.py:50
 #, python-format
 msgid "%(blog_title)s settings"
 msgstr "impostazioni di \"%(blog_title)s\""
 
-#: models.py:51
+#: models.py:59
 msgid "blog"
 msgstr "blog"
 
-#: models.py:53
+#: models.py:61
 msgid "slug"
 msgstr "slug"
 
-#: models.py:54
+#: models.py:62
 msgid "body"
 msgstr "corpo dell'articolo"
 
-#: models.py:60
+#: models.py:68
 msgid "active"
 msgstr "attivo"
 
-#: models.py:61
+#: models.py:69
 msgid "created"
 msgstr "creato"
 
-#: models.py:62
+#: models.py:70
 msgid "published"
 msgstr "pubblicato"
 
-#: models.py:63
+#: models.py:71
 msgid "permalink"
 msgstr "permalink"
 
-#: models.py:64
+#: models.py:72
 msgid "enable comments"
 msgstr "abilitare i commenti"
 
-#: models.py:73
+#: models.py:81
 msgid "post"
 msgstr "articolo"
 
-#: models.py:74
+#: models.py:82
 msgid "posts"
 msgstr "articoli"
 
-#: models.py:105
+#: models.py:113
 #, python-format
 msgid "[%(site_name)s] Comment: \"%(content_object)s\""
 msgstr "[%(site_name)s] Commento: \"%(content_object)s\""
+
+#: templatetags/date_filters.py:20
+msgid "day"
+msgid_plural "days"
+msgstr[0] "giorno"
+msgstr[1] "giorni"
+
+#: templatetags/date_filters.py:21
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "ora"
+msgstr[1] "ore"

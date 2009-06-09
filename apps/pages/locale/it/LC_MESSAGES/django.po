@@ -4,10 +4,10 @@
 # Matteo Scotuzzi <matteo.scotuzzi@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: mightylemon-links\n"
+"Project-Id-Version: mightylemon-pages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-30 08:53+0200\n"
-"PO-Revision-Date: 2009-06-05 18:14\n"
+"POT-Creation-Date: 2009-06-05 00:21+0200\n"
+"PO-Revision-Date: 2009-06-05 18:21\n"
 "Last-Translator: Matteo Scotuzzi <matteo.scotuzzi@gmail.com>\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -15,14 +15,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Translated-Using: django-rosetta 0.4.3.svn\n"
 
-#: models.py:8
-msgid "name"
-msgstr "nome"
+#: models.py:16
+msgid "blog"
+msgstr "blog"
 
-#: models.py:9
-msgid "URL"
-msgstr "URL"
+#: models.py:17
+msgid "title"
+msgstr "titolo"
 
-#: models.py:10
-msgid "description"
-msgstr "descrizione"
+#: models.py:18
+msgid "slug"
+msgstr "slug"
+
+#: models.py:19
+msgid "body"
+msgstr "corpo della pagina"
+
+#: models.py:26
+msgid "created"
+msgstr "creato"
+
+#: models.py:27
+msgid "published"
+msgstr "pubblicato"
+
+#: models.py:28
+msgid "permalink"
+msgstr "permalink"
+
+#: models.py:35
+msgid "page"
+msgstr "pagina"
+
+#: models.py:36
+msgid "pages"
+msgstr "pagine"
